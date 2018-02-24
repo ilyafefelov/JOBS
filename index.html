@@ -1,0 +1,29 @@
+<html>
+<body>
+<script>
+    function makeRequest() {
+        var request = new window.XMLHttpRequest();
+        request.open('GET', '/hello-app/ua/danit/products.json', true);
+        request.onload = function() {
+            putMessage(JSON.parse(request.responseText));
+        }
+
+        request.onerror= function(data) {
+            console.log(data);
+        }
+        request.send();
+    }
+
+    function putMessage(product) {
+        var container = document.getElementById('container');
+        var text = document.createTextNode(product.name);
+        var div = document.createElement('div');
+        div.appendChild(text);
+        container.appendChild(div);
+    }
+</script>
+<h1>First JS App</h1>
+<div id="container"></div>
+<button onclick="makeRequest()">Press Me</button>
+</body>
+</html>
